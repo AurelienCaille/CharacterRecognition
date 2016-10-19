@@ -1,3 +1,5 @@
+#from http://g.sweyla.com/blog/2012/mnist-numpy/
+
 import os, struct
 from array import array as pyarray
 from numpy import append, array, int8, uint8, zeros
