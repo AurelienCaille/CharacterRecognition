@@ -41,3 +41,13 @@ def load_mnist(dataset="training", digits=np.arange(10), path="."):
         labels[i] = lbl[ind[i]]
 
     return images, labels
+	
+if __name__ == '__main__':
+	
+	path = raw_input("Enter path file: ")
+	mode = raw_input('Enter mod "training" or "testing": ')
+	
+	images, labels = load_mnist(path = path, dataset = mode)
+	
+	print "Test images[0]"
+	print images[0]
