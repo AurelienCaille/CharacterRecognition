@@ -13,11 +13,11 @@ def load_mnist(dataset="training", digits=np.arange(10), path="."):
     """
 
     if dataset == "training":
-        fname_img = os.path.join(path, 'train-images-idx3-ubyte')
-        fname_lbl = os.path.join(path, 'train-labels-idx1-ubyte')
+        fname_img = os.path.join(path, 'train-images.idx3-ubyte')
+        fname_lbl = os.path.join(path, 'train-labels.idx1-ubyte')
     elif dataset == "testing":
-        fname_img = os.path.join(path, 't10k-images-idx3-ubyte')
-        fname_lbl = os.path.join(path, 't10k-labels-idx1-ubyte')
+        fname_img = os.path.join(path, 't10k-images.idx3-ubyte')
+        fname_lbl = os.path.join(path, 't10k-labels.idx1-ubyte')
     else:
         raise ValueError("dataset must be 'testing' or 'training'")
 
@@ -43,6 +43,8 @@ def load_mnist(dataset="training", digits=np.arange(10), path="."):
     return images, labels
 	
 if __name__ == '__main__':
+
+	from matplotlib import pyplot as plt
 	
 	path = raw_input("Enter path file: ")
 	mode = raw_input('Enter mod "training" or "testing": ')
@@ -50,4 +52,8 @@ if __name__ == '__main__':
 	images, labels = load_mnist(path = path, dataset = mode)
 	
 	print "Test images[0]"
-	print images[0]
+	print labels[0]
+	plt.imshow(images[0])
+	plt.show()
+	
+	
