@@ -1,3 +1,4 @@
+#!/usr/bin/env python2
 #from http://g.sweyla.com/blog/2012/mnist-numpy/
 
 import os, struct
@@ -41,19 +42,15 @@ def load_mnist(dataset="training", digits=np.arange(10), path="."):
         labels[i] = lbl[ind[i]]
 
     return images, labels
-	
 if __name__ == '__main__':
+	# setup toolbar
 
+	
 	from matplotlib import pyplot as plt
 	
 	path = raw_input("Enter path file: ")
 	mode = raw_input('Enter mod "training" or "testing": ')
 	
 	images, labels = load_mnist(path = path, dataset = mode)
-	
-	print "Test images[0]"
-	print labels[0]
-	plt.imshow(images[0])
-	plt.show()
-	
-	
+
+					
