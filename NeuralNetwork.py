@@ -2,8 +2,17 @@
 import random
 import numpy as np
 from pprint import pprint
+
 class Neurone:
+	"""
+	describe the neurone object
+	"""
 	def __init__(self, nb_of_entry, weights = [], seuil = 0):
+		"""
+		create a neurone
+		if weights is not define, create a random neurone with number_of_entry entry
+		else create a neurone with a list of weight and seuil as seuil
+		"""
 		if weights == []:
 			self.weights = [random.random() for i in range(nb_of_entry)]
 			self.seuil = random.random()
@@ -12,7 +21,10 @@ class Neurone:
 			self.seuil = seuil
 	
 	def multiply(self, liste):
-	
+		"""
+		define the multiplicate between our weights and 
+		the liste of entry
+		"""
 		result = []
 		if len(liste) != len(self.weights):
 			raise ValueError("error incorect len of liste")
@@ -21,12 +33,19 @@ class Neurone:
 		return result
 	
 	def run(self, liste):
-	
+		"""
+		run the neurone with the liste of entry
+		return 1 if neurone activate
+		0 if not
+		"""
 		if sum(self.multiply(liste)) > self.seuil:
 			return 1
 		else:
 			return 0
 	def __repr__(self):
+		"""
+		a representation that allows us to recreate the neurone
+		"""
 		string = "Neurone(1, ["
 		for weight in self.weights:
 			string = string + str(weight) + ", "
@@ -35,7 +54,17 @@ class Neurone:
 		return string + ")"
 
 class NeuralNetwork:
+	"""
+	describe the neuralnetwork
+	"""
 	def __init__(self, inpt = [], hidden = [], output = []):
+		"""
+		allow the user to create a random neuralnetwork if inpt is not define
+		otherwise it will create a neuralnetwork with 
+		-> a list inpt of input neurone
+		-> a list hidden of hidden neurone
+		-> a list output of output neurone
+		"""
 		if inpt == []:
 			self.input = [Neurone(1) for i in range(2)]
 			self.hidden = [Neurone(2) for i in range(3)]
@@ -45,6 +74,11 @@ class NeuralNetwork:
 			self.hidden = hidden
 			self.output = output
 	def run(self, liste):
+		"""
+		run the neuralnetwork with a liste of input
+		notice that each input is a list :
+		[[1], [1]] to input 1 and 1
+		"""
 		if len(liste) != len(self.input):
 			raise ValueError("incorrect len")
 		tmp = []
@@ -69,29 +103,45 @@ class NeuralNetwork:
 		return result
 		
 	def croisement(self, neuralnetwork):
-		
+		"""
+		allows le croisement between 2 neuralnetworks
+		"""
+		pass
 		
 		
 		
 	def __repr__(self):
-
-		string = "-----input-----\n"
+		"""
+		a representation that alows us to recreate the neuralnetwork
+		"""
+		string = "NeuralNetwork(\n[\n"
 		for neurone in self.input:
-			string = string + str(neurone) + "\n"
-		string = string + "-----hidden ----\n"
+			string = string + str(neurone) + ", \n"
+		string = string[:-3] + "], \n[\n"
 		for neurone in self.hidden:
-			string = string + str(neurone) + "\n"
-		string = string + "----output----\n"
+			string = string + str(neurone) + ", \n"
+		string = string[:-3] + "], \n[\n"
 		for neurone in self.output:
-			string = string + str(neurone) + "\n"
+			string = string + str(neurone) + ", \n"
 		
-		return string
+		return string[:-3] + "])"
 
 class Population:
-	def __init__(self):
-		self.population = [NeuralNetwork() for i in range(5)]
+	"""
+	describe a populaion of neuralnetwork
+	"""
+	def __init__(self, nb = 5):
+		"""
+		create a list of nb neuralnetwork
+		"""
+		self.population = [NeuralNetwork() for i in range(nb)]
 		
 	def run(self, liste, answer):
+		"""
+		run the entire list of neuralnetwork and return a list with the success or echec of each neuralnetwork like :
+		[0, 1, 1, 0, 1]
+		
+		"""
 		result = []
 		for neuralnetwork in self.population:
 			tmp = neuralnetwork.run(liste)
@@ -102,6 +152,11 @@ class Population:
 		return result
 		
 	def evolution(self):
+		"""
+		run all the test and return all the best result of neuralnetwork in a list 
+		
+		NOTFINISHED
+		"""
 		a = np.array(self.run([[1], [1]], 1))
 		b = np.array(self.run([[1], [0]], 0))
 		c = np.array(self.run([[0], [1]], 0))
@@ -114,12 +169,10 @@ class Population:
 		for pos in range(len(self.population)):
 			if somme[pos] == maxi:
 				meilleur.append(self.population[pos])
-		
+		return(meilleur)
 		new_pop = meilleur + [NeuralNetwork() for i in range(len(self.population) - len(meilleur))]
 		
 		self.population = new_pop
 if __name__ == "__main__":
 	A = Population()
 	A.evolution()
-	
-	
