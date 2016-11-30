@@ -51,8 +51,8 @@ if __name__ == '__main__':
 	
 	images, labels = load_mnist(path = path, dataset = mode)
 	
-	print "Test images[0]"
-	print labels[0]
+	print ("Test images[0]")
+	print (labels[0])
 	plt.imshow(images[0])
 	plt.show()
 	
