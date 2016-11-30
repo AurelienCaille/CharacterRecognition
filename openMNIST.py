@@ -52,15 +52,10 @@ if __name__ == '__main__':
 	mode = raw_input('Enter mod "training" or "testing": ')
 	
 	images, labels = load_mnist(path = path, dataset = mode)
-<<<<<<< HEAD
-
-					
-=======
 	
 	print ("Test images[0]")
 	print (labels[0])
 	plt.imshow(images[0])
 	plt.show()
 	
-	
->>>>>>> e582ce66cc25089da41e56a609ace1e03268b86e
+
