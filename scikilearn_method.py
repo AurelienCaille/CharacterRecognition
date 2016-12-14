@@ -11,18 +11,11 @@ from sklearn import svm, metrics
 images, labels = load_mnist()
 images = images[:1000]
 labels = labels[:1000]
-indexs = range(1000)
 # To apply a classifier on this data, we need to flatten the image, to
 # turn the data in a (samples, feature) matrix:
 
 n_samples = len(images)
 
-
-for index, (image, label) in indexs, (images, labels):
-    plt.subplot(2, 4, index + 1)
-    plt.axis('off')
-    plt.imshow(image, cmap=plt.cm.gray_r, interpolation='nearest')
-    plt.title('Training: %i' % label)
 data = images.reshape((n_samples, -1))
 print(data[3])
 
