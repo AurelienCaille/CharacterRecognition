@@ -3,16 +3,26 @@ from openMNIST import load_mnist
 
 images, labels = load_mnist()
 dic = {}
+
+"""
+create a dictionnaire with 
+the values of the image 
+linked to
+the number of pixel with the values greater than 200 
+divided by the number of images
+"""
 print "Test images[0]"
 for image in range(len(labels)):
-	for lines in images[image]:
-		for pixel in lines:
-			if pixel > 200:
-				dic[str(labels[image][0])] = dic.get(str(labels[image][0]), 0) + 1
+    for lines in images[image]
+        for pixel in lines:
+            if pixel > 200:
+                dic[str(labels[image][0])] = dic.get(str(labels[image][0]), 0) + 1
 print(dic)
 for key in dic:
-	dic[key] = float(dic[key]) / 60000
+    dic[key] = float(dic[key]) / 60000
 print (dic)
+
+
 #{'0': 0.6958666666666666, 
 #'5': 0.4690666666666667, 
 #'2': 0.5751666666666667, 

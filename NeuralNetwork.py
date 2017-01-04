@@ -129,7 +129,7 @@ class NeuralNetwork:
         
     def croisement(self, neuralnetwork):
         """
-        allows le croisement between 2 neuralnetworks
+        allows the croisement between 2 neuralnetworks
         """
         pass
         
@@ -212,9 +212,10 @@ class Population:
         self.population = new_pop
 if __name__ == "__main__":
     A = Population()
+    #if a neural network satisfy the thing, return it
     print(A.find_most_valuable_neuralnetwork())
     
-    
+    #his neural network satisfy
     answer = NeuralNetwork(
 [
 Neurone(1, [0.94], 0.46), 
